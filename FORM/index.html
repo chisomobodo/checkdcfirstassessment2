@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>CLIENT INFORMATION</title>
+  
+</head>
+<body>
+  
+  <div id="container">
+  
+    <div class="form-wrap"></div>
+    <h1>PLEASE FILL THIS FORM.</h1>
+    <P>It will only takes a minute.</P>
+    
+   <form id="form" method="post"> 
+    <div class="form-group">
+      <label for="first-name">First Name<span>*</span></label>
+      <input type="text" name="firstname" id="firstName" placeholder="First Name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="Last-name">Last Name<span>*</span></label>
+      <input type="text" name="lastname" id="lastName" placeholder="Last Name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="company-name">Company<span>*</span></label>
+      <input type="text" name="companyname" id="companyName" placeholder="Company Name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="work-email">Work Email<span>*</span></label>
+      <input type="email" name="workemail" id="workEmail" placeholder="example@example.com" required>
+    </div>
+
+    <div class="form-group">
+      <label for="company-size">Company Size<span>*</span></label>
+      <select id="companySize" name="companysize" required>
+        <option value="0-10">0-10</option>
+        <option value="11-50">11-50</option>
+        <option value="51-100">51-100</option>
+      </select>
+    </div>
+    
+    
+    
+    <div class="form-group">
+      <label for="funding-stage">Funding Stage</label>
+      <select id="fundingStage" name="fundingstage">
+        <option value="under ₦100k">Under ₦100k</option>
+        <option value="₦100k - ₦500k">₦100k - ₦500k</option>
+        <option value="₦500k - ₦1m">₦500k - ₦1m</option>
+      </select>
+    </div>
+
+    <label for="message">Any other Message</label>
+    <textarea name="message" id="anyMessage" rows="6" cols="60" placeholder="Please Provide any additional information."></textarea>
+
+    <div>
+      <button type="submit">Submit</button>
+      <p>By clicking submit button, you agree to our <a href="#">Terms and Conditions</a> and <a href="#">Privacy</a></p>
+    </div>
+
+    <!-- <input type="hidden" name="applicantemail" id="applicant-email"  value="example@example.com"> -->
+
+ 
+    <img src="/images/checkdc logo.png" alt="checkdc logo">
+
+
+
+
+   </form>
+
+  </div>
+  <script >
+    var form = document.getElementById("form")
+    form.addEventListener("submit", function(e){
+      e.preventDefault()
+
+      
+      var firstname = document.getElementById("firstName").value
+      var lastname = document.getElementById("lastName").value
+      var companyname = document.getElementById("companyName").value
+      var workemail = document.getElementById("workEmail").value
+      var companysize = document.getElementById("companySize").value
+      var fundingstage = document.getElementById("fundingStage").value
+      var anymessage = document.getElementById("anyMessage").value
+
+      // console.log(firstname)
+      // console.log(lastname)
+      // console.log(companyname)
+      // console.log(workemail)
+      // console.log(companysize)
+      // console.log(fundingstage)
+      // console.log(anymessage)
+
+
+      fetch("https://eodh6njvzgfl22j.m.pipedream.net", {
+        method: "POST",
+        body: JSON.stringify({
+          applicantEmail: "obodochisom148@gmail.com",
+          firstName: firstname,
+          lastName: lastname,
+          company: companyname,
+          workEmail: workemail,
+          companySize: companysize,
+          fundingStage: fundingstage,
+        
+        }),
+         headers:{
+          "Content-Type":"application/json; charset=UFT-8"
+         }
+      })
+       .then(function(response){
+        alert("message sent successfully")
+        return response.json()
+       })
+
+      
+    })
+
+
+
+  </script>
+</body>
+</html>
